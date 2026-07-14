@@ -1,0 +1,30 @@
+services:
+  app:
+    container_name: app
+    image: ghcr.io/${GH_USERNAME}/${APP_NAME}:latest
+    build:
+      context: .
+      dockerfile: Dockerfile            # docker compose build    um das Image lokal zu bauen
+    ports:
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    volumes:
+      - .:/app
+    command: npm start
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/.docker/config.json:/config.json
+    command: --interval 30
+    environment:
+      - REPO_USER=${GH_USERNAME}
+      - REPO_PASS=${GH_PACKAGE_TOKEN}
+      - WATCHTOWER_CLEANUP=true         # Löscht alte Images nach dem Update
+      - WATCHTOWER_INTERVAL=300         # Prüfintervall in Sekunden (z. B. alle 5 Minuten)
+      - WATCHTOWER_LABEL_ENABLE=true
