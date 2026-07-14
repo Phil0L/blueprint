@@ -1,0 +1,35 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Deploy",
+      "detail": "Deploys with docker compose and watches for new images.",
+      "type": "shell",
+      "command": "./scripts/deploy.sh",
+      "windows": {
+        "command": ".\\scripts\\deploy.ps1"
+      },
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Run Frontend",
+      "detail": "Runs the frontend in development mode.",
+      "type": "shell",
+      "command": "./scripts/run-frontend.sh",
+      "windows": {
+        "command": ".\\scripts\\run-frontend.ps1"
+      },
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}
