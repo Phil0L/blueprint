@@ -30,6 +30,33 @@
         "reveal": "always",
         "panel": "new"
       }
+    },
+    {
+      "label": "Run Backend",
+      "detail": "Runs the backend in development mode.",
+      "type": "shell",
+      "command": "./scripts/run-backend.sh",
+      "windows": {
+        "command": ".\\scripts\\run-backend.ps1"
+      },
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Run Fullstack",
+      "detail": "Runs both the frontend and backend in development mode.",
+      "dependsOn": [
+        "Run Frontend",
+        "Run Backend"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
     }
   ]
 }
