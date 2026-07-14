@@ -1,7 +1,7 @@
 services:
   app:
     container_name: app
-    image: ghcr.io/${GH_USERNAME}/${APP_NAME}:latest
+    image: ghcr.io/${GH_USERNAME_LOWERCASE}/${APP_NAME_LOWERCASE}:latest
     build:
       context: .
       dockerfile: Dockerfile            # docker compose build    um das Image lokal zu bauen
