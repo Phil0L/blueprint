@@ -4,4 +4,7 @@
 */node_modules
 **/node_modules
 */node_modules/*
+
 */*-lock.*
+
+/.vscode/settings.json
