@@ -5,6 +5,13 @@ cleanup() {
 }
 trap cleanup EXIT INT TERM
 
+ENV_FILE="$SCRIPT_DIR/../.env"
+if [ -f "$ENV_FILE" ]; then
+    export $(grep -v '^#' "$ENV_FILE" | xargs)
+else
+    echo "Keine .env-Datei gefunden unter: $ENV_FILE"
+fi
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR/../frontend" || { echo "Fehler: 'frontend'-Ordner wurde nicht gefunden!"; exit 1; }
 
@@ -13,5 +20,5 @@ if [ ! -d "node_modules" ]; then
     npm install || { echo "Fehler bei 'npm install'!"; exit 1; }
 fi
 
-echo "Starte Frontend..."
+echo "Starte $APP_NAME Frontend..."
 npm run dev
