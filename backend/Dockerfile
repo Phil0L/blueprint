@@ -14,12 +14,12 @@ WORKDIR /app
 
 COPY package.json ./
 # Installiert nur die produktiven Abhängigkeiten (kein TypeScript, tsx etc.)
-RUN npm install --only=production
-
+RUN npm ci --omit=dev
 # Kopiert den kompilierten JavaScript-Code aus Stage 1
 COPY --from=builder /app/dist ./dist
 
-EXPOSE 5000
-ENV PORT=5000
+ARG PORT=5000
+EXPOSE $PORT
+ENV PORT=$PORT
 
-CMD ["node", "dist/index.js"]
+CMD ["node", "dist/main.js"]

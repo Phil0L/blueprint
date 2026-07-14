@@ -13,6 +13,8 @@ services:
     image: ghcr.io/${GH_USERNAME_LOWERCASE}/${APP_NAME_LOWERCASE}-backend:latest
     build:
       context: ./backend                # docker compose build    um das Image lokal zu bauen
+      args:
+        - PORT=${BACKEND_PORT}
     container_name: ${APP_NAME_LOWERCASE}-backend
     #restart: unless-stopped
     ports:

@@ -18,6 +18,20 @@
       }
     },
     {
+      "label": "Deploy local",
+      "detail": "Deploys and builds with docker compose and watches for new images.",
+      "type": "shell",
+      "command": "./scripts/deploy.sh --build",
+      "windows": {
+        "command": ".\\scripts\\deploy.ps1 --build"
+      },
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
       "label": "Run Frontend",
       "detail": "Runs the frontend in development mode.",
       "type": "shell",

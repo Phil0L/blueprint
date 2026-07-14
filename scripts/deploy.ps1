@@ -13,16 +13,18 @@ try {
                 }
             }
         }
-    } else {
-        Write-Host "Keine .env-Datei gefunden unter: $EnvFile" -ForegroundColor Yellow
     }
+
+    $buildFlag = ""
+    if ($args -contains "--build") {
+        $buildFlag = "--build"
+    } 
 
     Set-Location $PARENT_DIR
 
     Write-Host "Starting $env:APP_NAME..."
-    docker compose -f docker-compose.yaml up -d --build
+    docker compose -f docker-compose.yaml up -d $buildFlag
 } catch {
-    Write-Host "An error occurred: $_" -ForegroundColor Red
     exit 1
 } finally {
     Set-Location $OriginalLocation

@@ -14,25 +14,18 @@ try {
                 }
             }
         }
-    } else {
-        Write-Host "Keine .env-Datei gefunden unter: $EnvFile" -ForegroundColor Yellow
-    }
+    } 
 
     Set-Location $BackendPath -ErrorAction Stop
 
     if (-not (Test-Path "node_modules")) {
-        Write-Host "'node_modules' not found. Installing dependencies..."
         npm install
-        if ($LASTEXITCODE -ne 0) {
-            throw "Error during 'npm install'!"
-        }
     }
 
     Write-Host "Starting $env:APP_NAME Backend..."
     npm run dev
 
 } catch {
-    Write-Host "An error occurred: $_" -ForegroundColor Red
     exit 1
 } finally {
     Set-Location $OriginalLocation
