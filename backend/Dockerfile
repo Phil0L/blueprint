@@ -12,14 +12,14 @@ RUN npm run build
 FROM node:20-alpine
 WORKDIR /app
 
-COPY package.json ./
-# Installiert nur die produktiven Abhängigkeiten (kein TypeScript, tsx etc.)
+COPY package.json package-lock.json* ./
 RUN npm ci --omit=dev
-# Kopiert den kompilierten JavaScript-Code aus Stage 1
 COPY --from=builder /app/dist ./dist
 
 ARG PORT=5000
 EXPOSE $PORT
 ENV PORT=$PORT
+ENV BACKEND_PORT=$PORT
+
 
 CMD ["node", "dist/main.js"]

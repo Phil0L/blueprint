@@ -1,5 +1,4 @@
-const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
-const BACKEND_URL = `${BACKEND_BASE_URL}/api/clicks`;
+const BACKEND_URL = `/api/clicks`;
 
 const button = document.getElementById('counter-btn') as HTMLButtonElement | null;
 const text = document.getElementById('counter-text') as HTMLParagraphElement | null;

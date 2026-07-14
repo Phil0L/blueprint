@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import { DOTENV } from './const.js';
+import { ENV } from './const.js';
 
 const app = express();
-const PORT = DOTENV.BACKEND_PORT || 5000;
+const PORT = ENV.BACKEND_PORT || ENV.PORT || 5000;
 
 // CORS erlauben, damit das Frontend (z.B. auf Port 8080) anfragen darf
 app.use(cors());
